@@ -1,0 +1,1 @@
+import{M as e,N as t,R as n,g as r,k as i}from"./index-DGLLU8Ht.js";import{t as a}from"./ChartBar-ybY_iHJR.js";var o={class:`chart-container`},s=r(t({__name:`Chart`,setup(t){return(t,r)=>(n(),i(`div`,o,[e(a,{class:`chart`,ref:`barChartRef`,"auto-refresh":!0},null,512)]))}}),[[`__scopeId`,`data-v-eebbd8f4`]]);export{s as default};

@@ -1,17 +1,175 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>模型预览</title>
-  <script type="module" crossorigin src="/model-show-preview/assets/index-CAQqMTCX.js"></script>
-  <link rel="stylesheet" crossorigin href="/model-show-preview/assets/index-D80gTJtw.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开发工具预览集合</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 自定义配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#10b981',
+            accent: '#8b5cf6',
+            dark: '#1f2937',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .card-hover {
+        @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+      }
+    }
+  </style>
 </head>
 
-<body>
-  <div id="app"></div>
+<body class="bg-gray-50 min-h-screen font-sans">
+  <!-- 页面头部 -->
+  <header class="bg-gradient-to-r from-primary to-accent text-white py-12 px-4">
+    <div class="max-w-6xl mx-auto text-center">
+      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">开发工具预览集合</h1>
+      <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
+        探索我开发的各种3D模型展示和交互页面
+      </p>
+    </div>
+  </header>
+
+  <!-- 主要内容区 -->
+  <main class="max-w-6xl mx-auto py-12 px-4">
+    <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- 卡片将通过JavaScript动态生成 -->
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white py-8 px-4 mt-12">
+    <div class="max-w-6xl mx-auto text-center">
+      <p>© 2026 模型展示预览集合 | 使用现代Web技术构建</p>
+    </div>
+  </footer>
+
+  <!-- 简单的交互效果脚本 -->
+  <script>
+    // 卡片数据
+    const cardsData = [
+      {
+        id: 1,
+        title: 'Vue Tools',
+        description: '基于Vue.js的3D工具集合，提供丰富的交互体验和可视化功能。',
+        url: './vue-composables/index.html',
+        icon: 'fa-cube',
+        gradient: 'from-primary to-blue-400'
+      },
+      {
+        id: 2,
+        title: 'API开发示例',
+        description: '集成多种3D可视化库的API开发示例，支持物理引擎和交互功能。',
+        url: './vue-composables/index.html',
+        icon: 'fa-code',
+        gradient: 'from-secondary to-emerald-400'
+      },
+      {
+        id: 3,
+        title: '基础3D示例',
+        description: '3D基础形状创建与操作的示例代码，展示基本的3D建模能力。',
+        url: './vue-composables/index.html',
+        icon: 'fa-cubes',
+        gradient: 'from-accent to-purple-400'
+      },
+      // {
+      //   id: 4,
+      //   title: '图表可视化',
+      //   description: '基于ThingJS的数据可视化图表组件，支持多种图表类型和交互方式。',
+      //   url: '#',
+      //   icon: 'fa-bar-chart',
+      //   gradient: 'from-yellow-500 to-amber-400'
+      // },
+      // {
+      //   id: 5,
+      //   title: '校园模型',
+      //   description: '3D校园场景模型展示，支持交互式浏览和信息查询功能。',
+      //   url: '#',
+      //   icon: 'fa-university',
+      //   gradient: 'from-red-500 to-rose-400'
+      // },
+      // {
+      //   id: 6,
+      //   title: '地球可视化',
+      //   description: '基于ThingJS的地球模型可视化组件，支持全球数据展示和交互。',
+      //   url: '#',
+      //   icon: 'fa-globe',
+      //   gradient: 'from-blue-500 to-cyan-400'
+      // }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 渲染卡片
+      const cardsContainer = document.getElementById('cards-container');
+      cardsData.forEach(card => {
+        const cardElement = document.createElement('a');
+        cardElement.href = card.url;
+        cardElement.target = '_blank';
+        cardElement.className = 'block';
+        cardElement.innerHTML = `
+          <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+            <div class="h-48 bg-gradient-to-br ${card.gradient} flex items-center justify-center">
+              <i class="fa ${card.icon} text-6xl text-white opacity-80"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-dark">${card.title}</h3>
+              <p class="text-gray-600 mb-4">${card.description}</p>
+              <div class="flex items-center text-primary">
+                <span>查看详情</span>
+                <i class="fa fa-arrow-right ml-2"></i>
+              </div>
+            </div>
+          </div>
+        `;
+        cardsContainer.appendChild(cardElement);
+      });
+
+      // 添加平滑滚动效果
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href'))?.scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // 为卡片添加进入视口时的动画效果
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            entry.target.classList.remove('opacity-0', 'translate-y-10');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.card-hover').forEach(card => {
+        card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-500');
+        observer.observe(card);
+      });
+    });
+  </script>
 </body>
 
 </html>

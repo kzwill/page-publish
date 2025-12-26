@@ -1,0 +1,10 @@
+- key: object
+  label:
+    en-US: Object
+    zh-CN: 对象
+  children:
+    - key: box
+      label:
+        en-US: Box
+        zh-CN: 立方体
+      path: basic/createBox
